@@ -2,6 +2,8 @@ linters:
   disable:
     - exhaustivestruct
     - gochecknoglobals
+    - exhaustruct
+    - varnamelen
 
     # deprecated
     - scopelint
