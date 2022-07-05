@@ -6,90 +6,200 @@ type CreateInteractionsHandlerOption interface {
 	Apply(InteractionCallbackFunctionMap)
 }
 
-func CreateInteractionsHandler(options ...CreateInteractionsHandlerOption) InteractionsHandler {
+func CreateInteractionsHandler(options ...CreateInteractionsHandlerOption) *InteractionsHandler {
 	callbackFunctions := InteractionCallbackFunctionMap{}
 	for _, opt := range options {
 		opt.Apply(callbackFunctions)
 	}
 
-	return InteractionsHandler{
+	return &InteractionsHandler{
 		callbacks: callbackFunctions,
 	}
 }
 
 // InteractionFunctionDialogCancellation set callback functions for DialogCancellation.
-type InteractionFunctionDialogCancellation []InteractionCallbackFunction
+func InteractionFunctionDialogCancellation(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionDialogCancellationStruct {
+	return InteractionFunctionDialogCancellationStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionDialogCancellation) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeDialogCancellation] = f
+type InteractionFunctionDialogCancellationStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionDialogCancellationStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeDialogCancellation] = f.functions
 }
 
 // InteractionFunctionDialogSubmission set callback functions for DialogSubmission.
-type InteractionFunctionDialogSubmission []InteractionCallbackFunction
+func InteractionFunctionDialogSubmission(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionDialogSubmissionStruct {
+	return InteractionFunctionDialogSubmissionStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionDialogSubmission) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeDialogSubmission] = f
+type InteractionFunctionDialogSubmissionStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionDialogSubmissionStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeDialogSubmission] = f.functions
 }
 
 // InteractionFunctionDialogSuggestion set callback functions for DialogSuggestion.
-type InteractionFunctionDialogSuggestion []InteractionCallbackFunction
+func InteractionFunctionDialogSuggestion(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionDialogSuggestionStruct {
+	return InteractionFunctionDialogSuggestionStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionDialogSuggestion) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeDialogSuggestion] = f
+type InteractionFunctionDialogSuggestionStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionDialogSuggestionStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeDialogSuggestion] = f.functions
 }
 
 // InteractionFunctionInteractionMessage set callback functions for InteractionMessage.
-type InteractionFunctionInteractionMessage []InteractionCallbackFunction
+func InteractionFunctionInteractionMessage(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionInteractionMessageStruct {
+	return InteractionFunctionInteractionMessageStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionInteractionMessage) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeInteractionMessage] = f
+type InteractionFunctionInteractionMessageStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionInteractionMessageStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeInteractionMessage] = f.functions
 }
 
 // InteractionFunctionMessageAction set callback functions for MessageAction.
-type InteractionFunctionMessageAction []InteractionCallbackFunction
+func InteractionFunctionMessageAction(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionMessageActionStruct {
+	return InteractionFunctionMessageActionStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionMessageAction) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeMessageAction] = f
+type InteractionFunctionMessageActionStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionMessageActionStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeMessageAction] = f.functions
 }
 
 // InteractionFunctionBlockActions set callback functions for BlockActions.
-type InteractionFunctionBlockActions []InteractionCallbackFunction
+func InteractionFunctionBlockActions(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionBlockActionsStruct {
+	return InteractionFunctionBlockActionsStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionBlockActions) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeBlockActions] = f
+type InteractionFunctionBlockActionsStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionBlockActionsStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeBlockActions] = f.functions
 }
 
 // InteractionFunctionBlockSuggestion set callback functions for BlockSuggestion.
-type InteractionFunctionBlockSuggestion []InteractionCallbackFunction
+func InteractionFunctionBlockSuggestion(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionBlockSuggestionStruct {
+	return InteractionFunctionBlockSuggestionStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionBlockSuggestion) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeBlockSuggestion] = f
+type InteractionFunctionBlockSuggestionStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionBlockSuggestionStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeBlockSuggestion] = f.functions
 }
 
 // InteractionFunctionViewSubmission set callback functions for ViewSubmission.
-type InteractionFunctionViewSubmission []InteractionCallbackFunction
+func InteractionFunctionViewSubmission(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionViewSubmissionStruct {
+	return InteractionFunctionViewSubmissionStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionViewSubmission) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeViewSubmission] = f
+type InteractionFunctionViewSubmissionStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionViewSubmissionStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeViewSubmission] = f.functions
 }
 
 // InteractionFunctionViewClosed set callback functions for ViewClosed.
-type InteractionFunctionViewClosed []InteractionCallbackFunction
+func InteractionFunctionViewClosed(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionViewClosedStruct {
+	return InteractionFunctionViewClosedStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionViewClosed) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeViewClosed] = f
+type InteractionFunctionViewClosedStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionViewClosedStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeViewClosed] = f.functions
 }
 
 // InteractionFunctionShortcut set callback functions for Shortcut.
-type InteractionFunctionShortcut []InteractionCallbackFunction
+func InteractionFunctionShortcut(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionShortcutStruct {
+	return InteractionFunctionShortcutStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionShortcut) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeShortcut] = f
+type InteractionFunctionShortcutStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionShortcutStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeShortcut] = f.functions
 }
 
 // InteractionFunctionWorkflowStepEdit set callback functions for WorkflowStepEdit.
-type InteractionFunctionWorkflowStepEdit []InteractionCallbackFunction
+func InteractionFunctionWorkflowStepEdit(
+	f ...InteractionCallbackFunction,
+) InteractionFunctionWorkflowStepEditStruct {
+	return InteractionFunctionWorkflowStepEditStruct{
+		functions: f,
+	}
+}
 
-func (f InteractionFunctionWorkflowStepEdit) Apply(m InteractionCallbackFunctionMap) {
-	m[slack.InteractionTypeWorkflowStepEdit] = f
+type InteractionFunctionWorkflowStepEditStruct struct {
+	functions []InteractionCallbackFunction
+}
+
+func (f InteractionFunctionWorkflowStepEditStruct) Apply(m InteractionCallbackFunctionMap) {
+	m[slack.InteractionTypeWorkflowStepEdit] = f.functions
 }

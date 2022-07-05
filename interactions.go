@@ -38,8 +38,6 @@ func (h *InteractionsHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	}
 
 	// NOTE: Acknowledgment response
-	w.WriteHeader(http.StatusOK)
-
 	_, err = w.Write([]byte(""))
 	if err != nil {
 		return
