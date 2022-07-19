@@ -73,7 +73,10 @@ func GetCallbackID(message slack.InteractionCallback) CallbackID {
 	var callbackID CallbackID
 
 	switch message.Type {
-	case slack.InteractionTypeWorkflowStepEdit:
+	case
+		slack.InteractionTypeWorkflowStepEdit,
+		slack.InteractionTypeMessageAction,
+		slack.InteractionTypeShortcut:
 		callbackID = CallbackID(message.CallbackID)
 	case slack.InteractionTypeViewSubmission:
 		callbackID = CallbackID(message.View.CallbackID)
@@ -84,8 +87,6 @@ func GetCallbackID(message slack.InteractionCallback) CallbackID {
 		slack.InteractionTypeDialogSubmission,
 		slack.InteractionTypeDialogSuggestion,
 		slack.InteractionTypeInteractionMessage,
-		slack.InteractionTypeMessageAction,
-		slack.InteractionTypeShortcut,
 		slack.InteractionTypeViewClosed:
 		log.Println("no CallbackID:", message.Type)
 	}
